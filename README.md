@@ -7,6 +7,12 @@
 
 This project is released under the MIT License. See the LICENSE file for full details.
 
+## Credits
+
+**Original Script Author:** James Tucker (Zscaler)  
+**OAuth 2.0 Implementation:** ZHERO srl  
+**Special Thanks:** Joost Hage (Zscaler) for valuable contributions and guidance
+
 ---
 
 ## Overview
@@ -14,49 +20,49 @@ This project is released under the MIT License. See the LICENSE file for full de
 This tool analyzes custom URL categories in Zscaler Internet Access (ZIA) to provide insights into URL coverage and categorization. It's an OAuth 2.0 implementation of the original script by James Tucker from Zscaler.
 
 ### Key Features
-- 🔐 OAuth 2.0 authentication (modern OpenAPI standard)
-- 📊 Analyze URL coverage across custom categories
-- 🔍 Identify URLs not categorized by Zscaler
-- 📈 Generate categorization statistics
-- 📄 Export results to CSV format
-- 🚀 Batch processing for large URL lists
+
+-   🔐 OAuth 2.0 authentication (modern OpenAPI standard)
+-   📊 Analyze URL coverage across custom categories
+-   🔍 Identify URLs not categorized by Zscaler
+-   📈 Generate categorization statistics
+-   📄 Export results to CSV or XLSX (Excel) format
+-   🚀 Batch processing for large URL lists
 
 ### What This Tool Does
+
 1. Authenticates with Zscaler ZIA using OAuth 2.0
 2. Lists all custom URL categories in your environment
 3. For selected categories:
-   - Shows percentage of URLs in known Zscaler categories
-   - Lists URLs NOT defined/categorized by Zscaler
-   - Provides category breakdown with counts
-   - Exports full results to CSV
-
-## Credits
-
-**Original Script Author:** James Tucker (Zscaler)  
-**OAuth 2.0 Implementation:** ZHERO srl
+    - Shows percentage of URLs in known Zscaler categories
+    - Lists URLs NOT defined/categorized by Zscaler
+    - Provides category breakdown with counts
+    - Exports full results to CSV
 
 This is a modernized version of James Tucker's original `zia_custom_category_analyzer` script, updated to use OAuth 2.0 authentication and the Zscaler OneAPI standards.
 
 ## Prerequisites
 
-- Python 3.6 or higher
-- Zscaler ZIA tenant with API access enabled
-- OAuth 2.0 client credentials (Client ID and Client Secret)
-- Network access to Zscaler API endpoints
+-   Python 3.6 or higher
+-   Zscaler ZIA tenant with API access enabled
+-   OAuth 2.0 client credentials (Client ID and Client Secret)
+-   Network access to Zscaler API endpoints
 
 ## Installation
 
 1. Clone or download this project:
+
 ```bash
 cd zia-custom-category-analyzer-oauth
 ```
 
-2. Install required dependencies:
+2. Install required dependencies (eventually use a python venv):
+
 ```bash
 pip install -r requirements.txt
 ```
 
 3. Set up your OAuth credentials:
+
 ```bash
 cp .env.example .env
 # Edit .env with your Zscaler OAuth credentials
@@ -90,15 +96,18 @@ ZSCALER_CLIENT_SECRET=your_client_secret_here
 ### Basic Usage
 
 Run the analyzer:
+
 ```bash
 python zia_custom_category_analyzer_oauth.py
 ```
 
 The script will:
+
 1. Authenticate with Zscaler
 2. Display all custom URL categories
 3. Prompt you to select categories to analyze
-4. Generate analysis and CSV reports
+4. Ask for your preferred export format (CSV or Excel)
+5. Generate analysis and export reports
 
 ### Example Session
 
@@ -128,46 +137,61 @@ Found 3 custom URL categories:
 
 📋 Select categories to analyze:
 Enter category numbers (e.g., 1,3,5) or 'all' for all categories: 1,3
+
+📄 Select export format:
+1. CSV (Comma-separated values)
+2. XLSX (Excel with formatting)
+Enter your choice (1 or 2) [default: 2]: 2
 ```
 
 ### Output Files
 
-The tool generates CSV files for each analyzed category:
-- `category_name_category_analysis.csv` - Contains URL-to-category mappings
+The tool generates output files for each analyzed category:
+
+-   **CSV Format**: `category_name_category_analysis.csv` - Simple URL-to-category mappings
+-   **Excel Format**: `category_name_category_analysis.xlsx` - Professional report with:
+    -   Analysis Results sheet with formatted data and highlighted uncategorized URLs
+    -   Summary sheet with statistics, charts, and credits
+    -   Auto-adjusted column widths and frozen headers
+    -   Clickable link to ZHERO website
 
 ## API Endpoints Used
 
 This tool uses the following Zscaler API endpoints:
-- Zscaler Identity OAuth: `/oauth2/v1/token` - OAuth 2.0 authentication
-- ZIA API via OneAPI gateway:
-  - `/zia/api/v1/urlCategories/lite` - List URL categories
-  - `/zia/api/v1/urlCategories/{id}` - Get category details
-  - `/zia/api/v1/urlLookup` - Bulk URL categorization lookup
+
+-   Zscaler Identity OAuth: `/oauth2/v1/token` - OAuth 2.0 authentication
+-   ZIA API via OneAPI gateway:
+    -   `/zia/api/v1/urlCategories/lite` - List URL categories
+    -   `/zia/api/v1/urlCategories/{id}` - Get category details
+    -   `/zia/api/v1/urlLookup` - Bulk URL categorization lookup
 
 ## Performance Considerations
 
-- The tool processes URLs in batches of 100 (API limit)
-- Large categories with thousands of URLs are fully supported
-- Progress indicators show batch processing status
-- Results are streamed to reduce memory usage
-- **Rate Limiting**: Enforces 2 seconds between API calls (conservative approach)
-  - Automatic delays between requests
-  - Time estimates for large batch operations
+-   The tool processes URLs in batches of 100 (API limit)
+-   Large categories with thousands of URLs are fully supported
+-   Progress indicators show batch processing status
+-   Results are streamed to reduce memory usage
+-   **Rate Limiting**: Enforces 2 seconds between API calls (conservative approach)
+    -   Automatic delays between requests
+    -   Time estimates for large batch operations
 
 ## Troubleshooting
 
 ### Authentication Errors
-- Verify your Client ID and Client Secret are correct
-- Ensure your API client has the necessary permissions
-- Check network connectivity to Zscaler API endpoints
+
+-   Verify your Client ID and Client Secret are correct
+-   Ensure your API client has the necessary permissions
+-   Check network connectivity to Zscaler API endpoints
 
 ### No Categories Found
-- Ensure you have custom URL categories defined in ZIA
-- Verify API permissions include URL category read access
+
+-   Ensure you have custom URL categories defined in ZIA
+-   Verify API permissions include URL category read access
 
 ### Rate Limiting
-- The tool respects Zscaler API rate limits
-- For very large deployments, consider running analyses sequentially
+
+-   The tool respects Zscaler API rate limits
+-   For very large deployments, consider running analyses sequentially
 
 ## Use Cases
 
@@ -179,6 +203,7 @@ This tool uses the following Zscaler API endpoints:
 ## Contributing
 
 Feel free to submit issues or pull requests. When contributing:
+
 1. Maintain backward compatibility
 2. Follow the existing code style
 3. Update documentation as needed
