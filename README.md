@@ -153,7 +153,6 @@ The tool generates output files for each analyzed category:
     -   Analysis Results sheet with formatted data and highlighted uncategorized URLs
     -   Summary sheet with statistics, charts, and credits
     -   Auto-adjusted column widths and frozen headers
-    -   Clickable link to ZHERO website
 
 ## API Endpoints Used
 
