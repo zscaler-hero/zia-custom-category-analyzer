@@ -15,8 +15,7 @@ This project is released under the MIT License. See the LICENSE file for full de
 
 ---
 
-Video Demo & Tutorial on YouTube:
-[![Video Demo & Tutorial](https://img.youtube.com/vi/4BaY2-Q2L7g/0.jpg)](https://www.youtube.com/watch?v=4BaY2-Q2L7g&t)
+Watch on YouTube: [Video Demo & Tutorial](https://www.youtube.com/watch?v=4BaY2-Q2L7g&t)
 
 ## Overview
 
