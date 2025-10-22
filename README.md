@@ -15,6 +15,9 @@ This project is released under the MIT License. See the LICENSE file for full de
 
 ---
 
+Video Demo & Tutorial on YouTube:
+[![Video Demo & Tutorial](https://img.youtube.com/vi/4BaY2-Q2L7g/0.jpg)](https://www.youtube.com/watch?v=4BaY2-Q2L7g&t)
+
 ## Overview
 
 This tool analyzes custom URL categories in Zscaler Internet Access (ZIA) to provide insights into URL coverage and categorization. It's an OAuth 2.0 implementation of the original script by James Tucker from Zscaler.
